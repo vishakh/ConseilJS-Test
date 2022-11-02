@@ -7,8 +7,6 @@ logger.setLevel('debug', false); // to see only errors, set to 'error'
 cjs.registerLogger(logger);
 cjs.registerFetch(fetch);
 
-const code = ""
-
 const tezosServer = "https://tezos-prod.cryptonomic-infra.tech:443"
 
 const conseilServer: cjs.ConseilServerInfo  = {
@@ -33,11 +31,8 @@ const getHead = async () => {
 
 const createInvocationTransaction = () => {
     const params: cjs.ContractParameters = {
-        entrypoint: "comptroller",
-        value: {
-            prim: "unit",
-            args: []
-        }
+        entrypoint: "balanceOf",
+        value: { "string": "tz1Xy5UM1tC3CFcbPBVq5PjufaxcLjMwfQkE" }
     }
 
     const op: cjs.Transaction = {
@@ -54,18 +49,18 @@ const createInvocationTransaction = () => {
     return op;
 }
 
-const readView = async (chainID: string, op: cjs.Transaction) => {
-    const result = await cjs.TezosNodeWriter.dryRunOperation(tezosServer, chainID, [op])
+const readView = async () => {
+    const result = await cjs.TezosNodeWriter.runView(
+        tezosServer,
+        "main",
+        "getAccountSnapshotView",
+        { "string": "tz1Xy5UM1tC3CFcbPBVq5PjufaxcLjMwfQkE" }
+    )
     console.log("result", result)
 }
 
-const getEntrypoints = async () => {
-    const result = await cjs.TezosContractIntrospector.generateEntryPointsFromCode(conseilServer, "mainnet", "KT1LxPGwkrvj8gG8k8CkpyKQaWyQAsnLfHLg")
-    console.log("result", result)
-}
 
 //getHead();
 //const op = createInvocationTransaction()
-//readView("NetXdQprcVkpaWU", op)
+readView()
 
-getEntrypoints()
