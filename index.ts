@@ -53,6 +53,7 @@ const readView = async () => {
     const result = await cjs.TezosNodeWriter.runView(
         tezosServer,
         "main",
+        "KT1LxPGwkrvj8gG8k8CkpyKQaWyQAsnLfHLg",
         "getAccountSnapshotView",
         { "string": "tz1Xy5UM1tC3CFcbPBVq5PjufaxcLjMwfQkE" }
     )
