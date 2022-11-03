@@ -58,7 +58,7 @@ const readView = async () => {
         { "string": "tz1Xy5UM1tC3CFcbPBVq5PjufaxcLjMwfQkE" },
         "2845658"
     )
-    console.log("result", result)
+    console.log("result", JSON.stringify(result))
 }
 
 
