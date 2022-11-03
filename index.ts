@@ -55,7 +55,8 @@ const readView = async () => {
         "main",
         "KT1LxPGwkrvj8gG8k8CkpyKQaWyQAsnLfHLg",
         "getAccountSnapshotView",
-        { "string": "tz1Xy5UM1tC3CFcbPBVq5PjufaxcLjMwfQkE" }
+        { "string": "tz1Xy5UM1tC3CFcbPBVq5PjufaxcLjMwfQkE" },
+        "2845658"
     )
     console.log("result", result)
 }
